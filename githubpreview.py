@@ -74,7 +74,7 @@ class SpritePreviewer(QMainWindow):
 
             sprite_names = []
             for file in files:
-                if file.endswith(".png") and file.startswith("sprites_"):
+                if file.endswith(".png") and file.startswith("sprite_"):
                     sprite_names.append(file)
 
             sprite_names.sort()
@@ -84,7 +84,23 @@ class SpritePreviewer(QMainWindow):
                 self.show_current_sprite()
             else:
                 self.image_label.setText("No Sprite Loaded")
-                
+
+            def show_current_sprite(self):
+                if len(self.sprite_files) == 0:
+                    return
+
+                pixmap = QPixmap(self.sprite_files[self.current_index])
+
+                scaled = pixmap.scaled(
+                    200, 200,
+                    Qt.AspectRatioMode.KeepAspectRatio,
+                    Qt.TransformationMode.FastTransformation
+                )
+
+                self.image_label.setPixmap(scaled)
+
+                self.load_sprites()
+
 
 
 
