@@ -58,6 +58,36 @@ class SpritePreviewer(QMainWindow):
         self.main_layout.addLayout(fps_layout)
         self.main_layout.addWidget(self.start_stop_button)
 
+        self.sprite_files = []
+        self.current_index = 0
+        self.timer = QTimer()
+        self.is_running = False
+
+        def load_sprites(self):
+            folder = "sprites"
+
+            if not os.path.exists(folder):
+                self.image_label.setText("No Sprite Loaded")
+                return
+
+            files = os.listdir(folder)
+
+            sprite_names = []
+            for file in files:
+                if file.endswith(".png") and file.startswith("sprites_"):
+                    sprite_names.append(file)
+
+            sprite_names.sort()
+            self.sprite_files = [os.path.join(folder, name) for name in sprite_names]
+
+            if len(self.sprite_files) > 0:
+                self.show_current_sprite()
+            else:
+                self.image_label.setText("No Sprite Loaded")
+                
+
+
+
 
 
 
