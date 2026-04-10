@@ -66,8 +66,10 @@ class SpritePreviewer(QMainWindow):
         self.timer.timeout.connect(self.next_frame)
         self.fps_slider.valueChanged.connect(self.update_fps)
 
+        self.start_stop_button.clicked.connect(self.toggle_animation)
+
         self.load_sprites()
-            
+
     def load_sprites(self):
         folder = "sprites"
 
@@ -129,6 +131,19 @@ class SpritePreviewer(QMainWindow):
         if self.is_running:
             self.timer.start(delay_ms)
 
+    def toggle_animation(self):
+        if not self.is_running:
+            fps = self.fps_slider.value()
+            delay_ms = int(1000 / fps)
+
+            self.timer.start(delay_ms)
+            self.start_stop_button.setText("Stop")
+            self.is_running = True
+
+        else:
+            self.timer.stop()
+            self.start_stop_button.setText("Start")
+            self.is_running = False
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
