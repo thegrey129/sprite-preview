@@ -1,5 +1,5 @@
 # Authors: Dominick Panopoulos, Jace Hansen
-# Github link
+# https://github.com/thegrey129/sprite-preview
 
 import os
 import sys
@@ -50,7 +50,7 @@ class SpritePreviewer(QMainWindow):
         top_layout.addWidget(self.image_label)
         top_layout.addWidget(self.fps_slider)
 
-        fps_layout = QVBoxLayout()
+        fps_layout = QHBoxLayout()
         fps_layout.addWidget(self.fps_text_label)
         fps_layout.addWidget(self.fps_value_label)
 
