@@ -63,6 +63,7 @@ class SpritePreviewer(QMainWindow):
         self.timer = QTimer()
         self.is_running = False
 
+
         def load_sprites(self):
             folder = "sprites"
 
@@ -98,8 +99,33 @@ class SpritePreviewer(QMainWindow):
                 )
 
                 self.image_label.setPixmap(scaled)
+                def next_frame(self):
+                    if len(self.sprite_files) == 0:
+                        return
+                    def update_fps(self):
+                        fps = self.fps_slider.value()
+                        self.fps_value_label.setText(str(fps))
 
-                self.load_sprites()
+                        delay_ms = int(1000/ fps)
+
+                        if self.is_running:
+                            self.timer.start(delay_ms)
+
+                    self.current_index += 1
+
+                    if self.current_index >= len(self.sprite_files):
+                        self.current_index = 0
+
+                    self.show_current_sprite()
+
+            self.timer.timeout.connect(self.next_frame)
+
+            self.fps_slider.valueChanged.connect(self.update_fps)
+
+            self.load_sprites()
+
+
+
 
 
 
