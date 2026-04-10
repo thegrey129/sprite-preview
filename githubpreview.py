@@ -1,6 +1,10 @@
 # Authors: Dominick Panopoulos, Jace Hansen
 # https://github.com/thegrey129/sprite-preview
 
+# sprite previewer
+# needs a sprites folder for the images to run properly
+# github didn't allow to add folder, just images
+
 import os
 import sys
 
