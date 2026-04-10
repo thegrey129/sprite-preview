@@ -68,6 +68,9 @@ class SpritePreviewer(QMainWindow):
 
         self.start_stop_button.clicked.connect(self.toggle_animation)
 
+        self.pause_action.triggered.connect(self.pause_animation)
+        self.exit_action.triggered.connect(self.close)
+
         self.load_sprites()
 
     def load_sprites(self):
@@ -144,6 +147,10 @@ class SpritePreviewer(QMainWindow):
             self.timer.stop()
             self.start_stop_button.setText("Start")
             self.is_running = False
+    def pause_animation(self):
+        self.timer.stop()
+        self.is_running = False
+        self.start_stop_button.setText("Start")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
